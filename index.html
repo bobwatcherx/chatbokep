@@ -135,7 +135,7 @@
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
         const formattedDate = thirtyDaysAgo.toISOString();
 
-        const response = await fetch(`https://poophdpocket.pockethost.io/api/collections/chat_jepang/records?created_gte=${formattedDate}`);
+        const response = await fetch(`https://poophdpocket.pockethost.io/api/collections/chat_jepang/records?perPage=500&created_gte=${formattedDate}`);
         const data = await response.json();
 
         // Hapus loading
