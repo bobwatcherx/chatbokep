@@ -25,7 +25,6 @@
     <div class="container mt-3">
         <h3>Obrolan Bokep Disini</h3>
         <div class="chat-container shadow" id="chatContainer">
-            <!-- Chat messages will be displayed here -->
         </div>
         <div class="row mt-3" style="background-color: #f7cbe0;padding:10px">
             <div class="col-8">
@@ -48,24 +47,16 @@
         
             if (message.trim() === '') return;
         
-            // Ganti teks tombol kirim
             const sendButton = document.querySelector('.btn-primary');
             sendButton.innerText = 'Sedang Mengirim...';
             sendButton.disabled = true;
         
             try {
-                // Mendapatkan alamat IP pengguna menggunakan kode yang ada pada halaman
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                const ipAddress = ipData.ip;
-        
-                // Mendapatkan domain dari halaman yang me-embed
                 const domain = document.referrer; 
         
                 const data = {
                     "domain": domain,
                     "comment": message,
-                    "ip_address": ipAddress 
                 };
         
                 const response = await fetch('https://poophdpocket.pockethost.io/api/collections/chat_jepang/records', {
@@ -99,19 +90,13 @@
                     messageDiv.appendChild(br);
                     messageDiv.appendChild(timeSpan);
                     
-                    // Scroll ke bawah
                     chatContainer.scrollTop = chatContainer.scrollHeight;
-        
-                    // Reset input
                     messageInput.value = '';
-        
-                    // Tampilkan snackbar
                     const snackbar = document.createElement('div');
                     snackbar.classList.add('alert', 'alert-success', 'mt-3');
                     snackbar.innerText = 'Pesan Terkirim';
                     document.body.appendChild(snackbar);
         
-                    // Hilangkan snackbar setelah 3 detik
                     setTimeout(() => {
                         snackbar.remove();
                     }, 3000);
@@ -121,7 +106,6 @@
             } catch (error) {
                 console.error(error);
             } finally {
-                // Kembalikan teks tombol kirim
                 sendButton.innerText = 'Kirim';
                 sendButton.disabled = false;
             }
@@ -131,17 +115,14 @@
         async function loadChatMessages() {
             const chatContainer = document.getElementById('chatContainer');
         
-            // Tampilkan loading
             const loadingDiv = document.createElement('div');
             loadingDiv.classList.add('message');
             loadingDiv.innerText = 'Sedang Memuat Chat Bokep Sabar ....';
             chatContainer.appendChild(loadingDiv);
         
-            // Calculate date 30 days ago
             const thirtyDaysAgo = new Date();
             thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
         
-            // Format date as a string in the format 'yyyy-mm-dd'
             const formattedDate = `${thirtyDaysAgo.getFullYear()}-${String(thirtyDaysAgo.getMonth() + 1).padStart(2, '0')}-${String(thirtyDaysAgo.getDate()).padStart(2, '0')}`;
         
             try {
@@ -193,8 +174,6 @@
                     messageDiv.appendChild(br2);
                     messageDiv.appendChild(timeSpan);
                     messageDiv.appendChild(br3);
-                    // messageDiv.appendChild(ipSpan); 
-                    // Tambahkan elemen IP ke dalam pesan
         
                     chatContainer.appendChild(messageDiv);
                 });
@@ -216,7 +195,6 @@
 
         loadChatMessages();
 
-        // SCROLL BAWA
          document.addEventListener('DOMContentLoaded', function() {
         const chatContainer = document.getElementById('chatContainer');
         chatContainer.scrollTop = chatContainer.scrollHeight;
