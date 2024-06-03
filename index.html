@@ -244,7 +244,7 @@ async function loadChatMessages() {
     const formattedDate = `${thirtyDaysAgo.getFullYear()}-${String(thirtyDaysAgo.getMonth() + 1).padStart(2, '0')}-${String(thirtyDaysAgo.getDate()).padStart(2, '0')}`;
 
     try {
-        const response = await fetch(`https://poophdpocket.pockethost.io/api/collections/chat_jepang/records?perPage=3000&filter=(created>'${formattedDate}')`);
+        const response = await fetch(`https://poophdpocket.pockethost.io/api/collections/chat_jepang/records?perPage=5000&filter=(created>'${formattedDate}')`);
         const data = await response.json();
 
         // Hapus loading
