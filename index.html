@@ -119,14 +119,7 @@
                       https://togefilm.vercel.app
                     </a>
                 </li>
-                <li>
-                    <a
-                    class="urlhref"
-                    target="_blank"
-                     href="https://yutub21.vercel.app">
-                      https://yutub21.vercel.app
-                    </a>
-                </li>
+               
                 <li>
                     <a
                     class="urlhref"
@@ -280,7 +273,21 @@
             const sendButton = document.querySelector('.btn-primary');
             sendButton.innerText = 'Sedang Mengirim...';
             sendButton.disabled = true;
-        
+      
+         const urlRegex = /(https?:\/\/[^\s]+|[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+      
+        const containsUrl = urlRegex.test(message);
+
+        if (containsUrl) {
+            const password = prompt("Hanya ADMIN yg BIsa kirim Pesan Dengan LINK !!! Masukin Password Jika Lu ADMIN NYA");
+            if (password !== "123admin") {
+                alert("Password salah! Pesan tidak terkirim.");
+                sendButton.innerText = 'Kirim';
+                sendButton.disabled = false;
+                return;
+            }
+        }
+
             try {
                 const domain = document.referrer; 
         
